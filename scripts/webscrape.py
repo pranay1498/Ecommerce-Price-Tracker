@@ -34,10 +34,8 @@ def scrapeFlipkart(link):
     driver.implicitly_wait(5)
     title_element = driver.find_element_by_xpath("//span[contains(@class,'B_NuCI')]")
     price_element = driver.find_element_by_xpath("//div[contains(@class,'_30jeq3 _16Jk6d')]")
-    #stock_element = driver.find_element_by_xpath("//div[contains(@class,'_2JC05C')]")
     product_title = title_element.text
     product_price = int(''.join(filter(str.isdigit, (price_element.text).split('.')[0])))
-    #product_stock = stock_element.text
     datadict = {'title': product_title, 'price': product_price, 'availability': ''}
     driver.close()
     return datadict
@@ -49,10 +47,8 @@ def scrapeEbay(link):
     driver.implicitly_wait(5)
     title_element = driver.find_element_by_id("itemTitle")
     price_element = driver.find_element_by_id("prcIsum")
-    # stock_element = driver.find_element_by_xpath("//div[contains(@class,'_2JC05C')]")
     product_title = title_element.text
     product_price = int(''.join(filter(str.isdigit, (price_element.text).split('.')[0])))
-    # product_stock = stock_element.text
     datadict = {'title': product_title, 'price': product_price, 'availability': ''}
     driver.close()
     return datadict
