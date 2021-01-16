@@ -40,6 +40,7 @@ def scrapeFlipkart(link):
     driver.close()
     return datadict
 
+#scrape ebay links and return product details in dictionary
 
 def scrapeEbay(link):
     driver = webdriver.Chrome(PATH, options=options)
