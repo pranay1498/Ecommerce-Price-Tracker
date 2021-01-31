@@ -1,0 +1,19 @@
+<html>
+<head>
+    <title>result</title>
+</head>
+<body>
+<h1 align="center">Details Obtained After Scraping</h1>
+<b>Product Name:</b>&nbsp;&nbsp;&nbsp; {{ product_name }}
+<br><br>
+<b>Current Price:</b>&nbsp;&nbsp;&nbsp; {{ product_price }}
+<br><br>
+<h4 style=" {% if in_range %}
+    color:green;
+    {% else %}
+    color:red;
+    {% endif %}">{{ message }}</h4>
+<br><br>
+Product <a href="{{ link }}">Link</a>
+</body>
+</html>
