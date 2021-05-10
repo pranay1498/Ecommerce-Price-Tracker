@@ -1,3 +1,5 @@
+from time import sleep
+
 from apscheduler.schedulers.background import BackgroundScheduler
 from django_apscheduler.jobstores import DjangoJobStore
 from django.utils import timezone
@@ -19,14 +21,16 @@ def scheduleHelp(all_objects, website):
 
 # main scheduler function
 def scheduleScrape():
-    scheduleHelp(models.Amazon.objects.all(), 'AMAZON')
-    scheduleHelp(models.Flipkart.objects.all(), 'FLIPKART')
-    scheduleHelp(models.Ebay.objects.all(), 'EBAY')
+   while True:
+        sleep(300)
+        scheduleHelp(models.Amazon.objects.all(), 'AMAZON')
+        scheduleHelp(models.Flipkart.objects.all(), 'FLIPKART')
+        scheduleHelp(models.Ebay.objects.all(), 'EBAY')
 
 
 def start():
     backscheduler = BackgroundScheduler()
     backscheduler.add_jobstore(DjangoJobStore(), "default")
-    backscheduler.add_job(scheduleScrape(), 'interval', seconds=30, name='scrape_all', jobstore='default')
+    backscheduler.add_job(scheduleScrape(), trigger="interval", name='scrape_all', seconds=300, jobstore="default")
     backscheduler.start()
 

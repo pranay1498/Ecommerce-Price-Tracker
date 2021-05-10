@@ -1,7 +1,11 @@
+from time import sleep
+
 from django.shortcuts import render
 from django.http import HttpResponse
+
+from .scheduler import scheduler
 from .scripts import utilities
-from _thread import start_new_thread
+
 
 import threading
 def index(request):
